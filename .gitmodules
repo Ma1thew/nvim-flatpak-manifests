@@ -1,0 +1,3 @@
+[submodule "nvim-flatpak-extensions"]
+	path = nvim-flatpak-extensions
+	url = https://github.com/Ma1thew/nvim-flatpak-extensions
