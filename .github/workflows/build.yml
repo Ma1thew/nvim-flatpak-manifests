@@ -26,8 +26,8 @@ jobs:
       - name: Add flathub remote
         run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-      - name: org.freedesktop.Sdk.Extension.clangd
-        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.clangd "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.clangd/org.freedesktop.Sdk.Extension.clangd.yml
+      #      - name: org.freedesktop.Sdk.Extension.clangd
+      #        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.clangd "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.clangd/org.freedesktop.Sdk.Extension.clangd.yml
 
       - name: org.freedesktop.Sdk.Extension.cmakels
         run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.cmakels "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.cmakels/org.freedesktop.Sdk.Extension.cmakels.yml
