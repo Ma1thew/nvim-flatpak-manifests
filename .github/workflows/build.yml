@@ -25,6 +25,14 @@ jobs:
         
       - name: Add flathub remote
         run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        
+      - name: Configure GPG
+        run: |
+          mkdir -p gpg
+          printf "$GPG_PRIVATE_KEY" | base64 --decode > private.key
+          gpg --homedir gpg --import private.key
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
 
       #      - name: org.freedesktop.Sdk.Extension.clangd
       #        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.clangd "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.clangd/org.freedesktop.Sdk.Extension.clangd.yml
@@ -64,7 +72,15 @@ jobs:
 
       - name: org.freedesktop.Sdk.Extension.yamlls
         run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.yamlls "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.yamlls/org.freedesktop.Sdk.Extension.yamlls.yml
-          
+      
+      - name: Sign repo
+        run: |
+          sudo flatpak build-sign repo --gpg-sign="$GPG_PUBLIC_KEY" --gpg-homedir=gpg
+          sudo flatpak build-update-repo repo --gpg-sign="$GPG_PUBLIC_KEY" --gpg-homedir=gpg
+          sudo sh -c "gpg --homedir=gpg --export $GPG_PUBLIC_KEY > repo/key.gpg"
+        env:
+          GPG_PUBLIC_KEY: ${{ secrets.GPG_PUBLIC_KEY }}
+      
       - name: Push to repo
         uses: cpina/github-action-push-to-another-repository@master
         env:
