@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="runtime">
+  <id>org.freedesktop.Sdk.Extension.htmlls</id>
+  <name>htmlls</name>
+  <summary>Language server for HTML, extracted from the VSCode tree.</summary>
+  <url type="homepage">https://github.com/vscode-langservers/vscode-html-languageserver</url>
+  <project_license>MIT</project_license>
+  <metadata_license>CC0-1.0</metadata_license>
+</component>
