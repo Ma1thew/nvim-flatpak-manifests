@@ -72,6 +72,12 @@ jobs:
 
       - name: org.freedesktop.Sdk.Extension.yamlls
         run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.yamlls "$GITHUB_WORKSPACE"/manifests/org.freedesktop.Sdk.Extension.yamlls/org.freedesktop.Sdk.Extension.yamlls.yml
+
+      - name: org.freedesktop.Sdk.Extension.htmlls
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.htmlls "$GITHUB_WORKSPACE"/manifests/org.freedesktop.Sdk.Extension.htmlls/org.freedesktop.Sdk.Extension.htmlls.yml
+
+      - name: org.freedesktop.Sdk.Extension.cssls
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.cssls "$GITHUB_WORKSPACE"/manifests/org.freedesktop.Sdk.Extension.cssls/org.freedesktop.Sdk.Extension.cssls.yml
       
       - name: Sign repo
         run: |
